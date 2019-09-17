@@ -1,0 +1,108 @@
+import { Head, Appear, Code, Notes } from 'mdx-deck'
+import { Invert, Split , SplitRight } from 'mdx-deck/layouts'
+import { CodeSurfer, components } from 'mdx-deck-code-surfer'
+
+import { default as mdxTheme } from 'mdx-deck/themes'
+import nightOwl from 'prism-react-renderer/themes/nightOwl'
+
+export const theme = {
+  ...mdxTheme,
+  codeSurfer: {
+    ...nightOwl,
+    showNumbers: true
+  }
+}
+export { components } from "mdx-deck-code-surfer"
+
+<Head>
+  <title>iCIMS - Rapidly Building React Apps</title>
+</Head>
+
+export default Invert
+
+# RAPIDLY BUILDING REACT APPS
+## Parish & Carlos
+
+---
+export default Invert
+
+## Agenda
+
+-
+-
+-
+
+<small>Prerecquisits: Javascript, Node.js</small>
+---
+export default Invert
+
+## Objectives
+
+---
+
+## Objectives and Expectations
+
+- Upon completing this training, you will be able to:
+  - 
+
+---
+
+export default Invert
+
+## Section Title
+
+---
+
+## Section Content
+### Sub-heading
+
+All your content 
+
+---
+
+```javascript Sample Code
+import React, { Suspense } from 'react';
+import ReactDom from 'react-dom';
+import { LocaleProvider } from 'icims-ui-components';
+import HelloWorldApp from './HelloWorldApp';
+
+ReactDom.render(
+  <LocaleProvider
+    nameSpaces={['common','myapp']}
+    cdn
+  >
+    <Suspense fallback="...">
+      <HelloWorldApp />
+    </Suspsense>
+  </LocaleProvider>,
+  document.getElementById('app')
+);
+----
+* > 
+3 > Import the LocaleProvider
+7:10 > Set nameSpaces and CDN
+1,11,13 > Suspense react component displays fallback while loading
+
+```
+
+---
+
+```javascript More Code Examples
+import React from 'react';
+import { useTranslation } from 'icims-ui-components';
+
+export function HelloWorldApp() {
+  const { t, i18n } = useTranslation(['myapp']);
+
+  return (
+    <div>
+      {t('myapp:helloWorld')}
+    </div>
+  );
+}
+----
+* > 
+2 > Import useTranslation hook
+5 > t() is the translate function
+9 > Use t(key, {options}) function for your strings
+```

@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "description": "Intro to I18n at iCIMS",
+  "scripts": {
+    "start": "mdx-deck src/deck.mdx",
+    "build": "mdx-deck build src/deck.mdx --no-html --out-dir public",
+    "pdf": "mdx-deck pdf src/deck.mdx --out-dir public",
+    "image": "mdx-deck screenshot src/deck.mdx --out-dir public",
+    "help": "mdx-deck",
+    "predeploy": "npm run build && npm run pdf && npm run image",
+    "deploy": "firebase deploy"
+  },
+  "keywords": [],
+  "author": "Carlos Limardo",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^1.0.1",
+    "firebase-tools": "^6.4.0",
+    "mdx-deck": "^1.10.0",
+    "mdx-deck-code-surfer": "^0.5.5",
+    "prism-react-renderer": "^0.1.5",
+    "raw-loader": "^0.5.1"
+  },
+  "name": "icims-i18n-presentation",
+  "dependencies": {}
+}
