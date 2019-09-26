@@ -1,6 +1,7 @@
-import { Head, Appear, Code, Notes } from 'mdx-deck'
+import { Head, Appear, Code, Notes, Image } from 'mdx-deck'
 import { Invert, Split , SplitRight } from 'mdx-deck/layouts'
 import { CodeSurfer, components } from 'mdx-deck-code-surfer'
+import { LiveCode } from 'mdx-deck-live-code';
 
 import { default as mdxTheme } from 'mdx-deck/themes'
 import nightOwl from 'prism-react-renderer/themes/nightOwl'
@@ -49,7 +50,7 @@ export default Invert
 
 export default Invert
 
-# HOUR 2 - Todo App (with Material UI)
+## HOUR 2 - Todo App (with Material UI)
 
 1. `npx create-react-app rapid-react-todo` (then wait a bit, or you can clone our repo)
 2. open ./rapid-react-todo in your VS Code (or your editor/IDE)
@@ -69,60 +70,247 @@ export default Invert
 
 export default Invert
 
-## Section Title
+# create-react-app (brought to you by facebook)
+
+- Generates a full react project with a single command
+- RAPID development
+  - Babel is configure for you
+  - No need to configure webpack
+  - You get a hot-reloading dev server
+  - serious time saver
+
+  `npx create-react-app app-name`
+
+- Open in VS Code
+- Execute the dev server with `npm start`
 
 ---
+The app will look like this
 
-## Section Content
-### Sub-heading
-
-All your content 
-
+<img src="./hour-two/CRA-start.png" />
 ---
-
-```javascript Sample Code
-import React, { Suspense } from 'react';
-import ReactDom from 'react-dom';
-import { LocaleProvider } from 'icims-ui-components';
-import HelloWorldApp from './HelloWorldApp';
-
-ReactDom.render(
-  <LocaleProvider
-    nameSpaces={['common','myapp']}
-    cdn
-  >
-    <Suspense fallback="...">
-      <HelloWorldApp />
-    </Suspsense>
-  </LocaleProvider>,
-  document.getElementById('app')
-);
-----
-* > 
-3 > Import the LocaleProvider
-7:10 > Set nameSpaces and CDN
-1,11,13 > Suspense react component displays fallback while loading
-
-```
-
+The project structure will look like this
+<img src="./hour-two/cra-project-view.png" />
 ---
+export default Invert
 
-```javascript More Code Examples
+```javascript
 import React from 'react';
-import { useTranslation } from 'icims-ui-components';
+import logo from './logo.svg';
+import './App.css';
 
-export function HelloWorldApp() {
-  const { t, i18n } = useTranslation(['myapp']);
-
+function App() {
   return (
-    <div>
-      {t('myapp:helloWorld')}
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
+
+export default App;
 ----
-* > 
-2 > Import useTranslation hook
-5 > t() is the translate function
-9 > Use t(key, {options}) function for your strings
+* > Open App.js
+* > Lets clean out the app so we can write our todo list code here
+2:3 > Remove lines 2-3
 ```
+
+---
+
+export default Invert
+
+```javascript
+import React from 'react';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+----
+* > Remove lines 2-3
+5:20 > Replace line 5-20 with <><p>test</p><>
+```
+---
+
+export default Invert
+
+```javascript
+import React from 'react';
+
+function App() {
+  return (
+    <>
+      <p>test</p>
+    </>
+  );
+}
+
+export default App;
+----
+* > Your code will look like this
+1 > Always import react when using jsx
+3 > Prefer stateless functional components over class components
+5,7 > An empty tag is a "fragment" a container component that renders nothing to the DOM
+6 > We'll render this just to know our app is working
+```
+---
+
+export default Invert;
+
+# Component Libraries and Material UI
+
+- Benefits of using a component library
+  - OOTB HTML element look bad, Components are built to look great 
+  - Component libraries include components that don't exist in HTML
+
+- Check out Material UI (Website Here)
+- Install Material UI
+  - `npm install @material-ui/core`
+
+---
+
+export default Invert;
+
+# Components We'll use...
+
+- List, ListItem, etc ([Docs](https://material-ui.com/components/lists/))
+- Button, IconButton (link)
+- TextField (link)
+- Grid (link)
+
+---
+
+export default Invert
+
+# Let's build the todo list!
+
+---
+
+export default Invert
+
+```javascript
+import React from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+function App() {
+  return (
+    <>
+      <p>test</p>
+    </>
+  );
+}
+
+export default App;
+----
+* > Let's start by adding some todos to our page
+2:4 > Import List, ListItem, and ListItemText from material-ui
+9 > Replace our placeholder test code with a List of todos
+```
+
+---
+
+export default Invert
+
+```javascript
+import React from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+function App() {
+  return (
+    <>
+      <List>
+        <ListItem>
+          <ListItemText primary="Todo1" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Todo2" />
+        </ListItem>
+      </List>
+    </>
+  );
+}
+
+export default App;
+----
+9:16 > We've added a static list with 2 todo items
+9:16 > This is good but we need a way to render todos from data...
+```
+---
+
+export default Invert
+
+# About React State and Hooks
+
+- State allows your component to "remember" data
+- React Hooks are functions that allow us to hook extra behavior into our components
+  - [More on React hooks](https://reactjs.org/docs/hooks-state.html)
+
+---
+export default Invert
+
+```javascript
+import React from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+function App() {
+  const [todos, setTodos] = useState(['test1', 'test2']);
+
+  return (
+    <>
+      <List>
+        <ListItem>
+          <ListItemText primary="Todo1" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Todo2" />
+        </ListItem>
+      </List>
+    </>
+  );
+}
+
+export default App;
+----
+7 > This line adds state to our component
+7 > "todos" is our state, an array of todo item strings
+7[2:6] > "setTodos" is a function to set the state to a new value
+7 > "['test1', 'test2']" is the initial value of the todos state
+```
+
+---
