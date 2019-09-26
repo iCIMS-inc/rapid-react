@@ -1,7 +1,6 @@
 import { Head, Appear, Code, Notes } from 'mdx-deck'
 import { Invert, Split , SplitRight } from 'mdx-deck/layouts'
 import { CodeSurfer, components } from 'mdx-deck-code-surfer'
-
 import { default as mdxTheme } from 'mdx-deck/themes'
 import nightOwl from 'prism-react-renderer/themes/nightOwl'
 
@@ -15,68 +14,87 @@ export const theme = {
 export { components } from "mdx-deck-code-surfer"
 
 <Head>
-  <title>iCIMS - Rapidly Building React Apps</title>
+  <title>iCIMS - Building Front-End Applications, Rapidly</title>
 </Head>
 
 export default Invert
 
-# RAPIDLY BUILDING REACT APPS
+# Building Front-End Applications, Rapidly
 ## Parish & Carlos
+## iCIMS Labs
 
 ---
-export default Invert
+
+export default Split
+
+<img src="https://render.bitstrips.com/v2/cpanel/abc63329-c482-413d-adb0-1119243878a9-759c69da-b3bd-4af6-bd4b-23eceee9c279-v1.png?transparent=1&palette=1" />
+
+<img src="https://render.bitstrips.com/v2/cpanel/abc63329-c482-413d-adb0-1119243878a9-759c69da-b3bd-4af6-bd4b-23eceee9c279-v1.png?transparent=1&palette=1" />
+
+---
 
 ## Agenda
 
--
--
--
+- What is React
+- Intro to JSX
+- Hands on, create-react-app 
+- Hands on, create a simple component
+- Hands on, using a 3rd party component (Material UI)
 
-<small>Prerecquisits: Javascript, Node.js</small>
----
-export default Invert
-
-## Objectives
-
+<small>Prerecquisits: Javascript, HTML, CSS &amp; Node.js</small>
 ---
 
 ## Objectives and Expectations
 
-- Upon completing this training, you will be able to:
-  - 
+- Upon completing this workshop, you will:
+  - Have an understanding of React
+  - How to create simple React components
+  - How to use 3rd party React components
+  - Build a simple ToDo app using `create-react-app`
 
 ---
 
 export default Invert
 
-## Section Title
+## ReactJS
 
 ---
 
-## Section Content
-### Sub-heading
+## What is React?
 
-All your content 
+- A Javascript library for building user interfaces
+- The V in M**V**C
+- VirtualDOM
+- Component based (components on components on components!)
+- Key terms: Components, Props, State
+
+---
+
+## JSX
+
+- Javascript + XML
+- HTML with some modifications
+  - `className` instead of `class`
+  - `children` prop
+- Easier to read &amp; write
 
 ---
 
 ```javascript Sample Code
-import React, { Suspense } from 'react';
-import ReactDom from 'react-dom';
-import { LocaleProvider } from 'icims-ui-components';
-import HelloWorldApp from './HelloWorldApp';
+import React from 'react';
 
-ReactDom.render(
-  <LocaleProvider
-    nameSpaces={['common','myapp']}
-    cdn
-  >
-    <Suspense fallback="...">
-      <HelloWorldApp />
-    </Suspsense>
-  </LocaleProvider>,
-  document.getElementById('app')
+function SimpleButton(props) {
+  React.createElement('button', {
+    className: 'btn btn-primary',
+    children: 'Hello World'
+  });
+}
+
+ReactDOM.render(
+  SimpleButton,
+  document.getElementById(‘root’)
 );
+
 ----
 * > 
 3 > Import the LocaleProvider
