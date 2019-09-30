@@ -88,14 +88,12 @@ export default Invert
 
 ---
 ```javascript Using Javascript
-class Hello extends React.Component {
-  render() {
-    return React.createElement(
-      'div',
-      { className: 'wrapper' },
-      `Hello ${this.props.toWho}!`
-    );
-  }
+function Hello(props) {
+  return React.createElement(
+    'div',
+    { style: { fontSize: '20px' }, className: 'wrapper' },
+    `Hello ${props.toWho}!`
+  );
 }
 
 ReactDOM.render(
@@ -104,21 +102,18 @@ ReactDOM.render(
 );
 
 ----
-* > 
-3 > React.createElement(elements||Component, props, ...children);
-4 > Using a 'div' element
-5 > Props (className is wrapper)
-6 > Children (whats's inside of your HTML tag)
-11:14 > Hello World
-
+1:7 > 
+2[3:5] > React.createElement(elements||Component, props, ...children);
+3 > Using a 'div' element
+4 > Props (inline style and a className)
+5 > Children (whats's inside of your HTML tag)
+9:12 > <div class="wrapper" style="font-size: 20px">Hello World</div>
 ```
 
 ---
 ```javascript With JSX
-class Hello extends React.Component {
-  render() {
-    return <div className="wrapper">Hello {this.props.toWho}!</div>;
-  }
+function Hello(props) {
+  return <div className="wrapper" style={{fontSize: '20px'}}>Hello {this.props.toWho}!</div>;
 }
 
 ReactDOM.render(
@@ -126,12 +121,20 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ----
-* >
-3 > Familiar, looks just like HTML
-7:10 > Easier to use and define props, children, etc.
+1:3 > 
+2 > Familiar, looks just like HTML
+6 > Easier to use and define props, children, etc.
+5:8 > <div class="wrapper" style="font-size: 20px">Hello World</div>
 ```
 ---
 
+## Reusing Components
+
+<img src="./hour-one/component-search.jpg" style={{width: '80%', height: 'auto'}} />
+
+---
+
+---
 
 # PARISH'S SLIDES
 

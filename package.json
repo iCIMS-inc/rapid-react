@@ -5,6 +5,7 @@
   "scripts": {
     "start": "mdx-deck src/deck.mdx",
     "build": "mdx-deck build src/deck.mdx --no-html --out-dir public",
+    "prebuild": "mkdir -p ./public/hour-one && mkdir -p ./public/hour-two && cp -r ./src/hour-one ./public/hour-one && cp -r ./src/hour-two ./public/hour-two",
     "pdf": "mdx-deck pdf src/deck.mdx --out-dir public",
     "image": "mdx-deck screenshot src/deck.mdx --out-dir public",
     "help": "mdx-deck",
