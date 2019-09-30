@@ -283,7 +283,7 @@ export default Invert
 export default Invert
 
 ```javascript
-import React from 'react';
+import React, { useState } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -294,12 +294,11 @@ function App() {
   return (
     <>
       <List>
-        <ListItem>
-          <ListItemText primary="Todo1" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Todo2" />
-        </ListItem>
+        {todos.map((todo, index) => (
+          <ListItem key={index}>
+            <ListItemText primary={todo} />
+          </ListItem>
+        ))}
       </List>
     </>
   );
@@ -307,10 +306,220 @@ function App() {
 
 export default App;
 ----
+1 > We need to import "useState" from react like this
 7 > This line adds state to our component
-7 > "todos" is our state, an array of todo item strings
-7[2:6] > "setTodos" is a function to set the state to a new value
-7 > "['test1', 'test2']" is the initial value of the todos state
+7[4] > "todos" is our state, an array of todo items, stored as strings
+7[6] > "setTodos" is a function to set the state to a new value
+7[13:18] > "['test1', 'test2']" is the initial value of the todos state
+12:16 > We'll loop through all the todos in our state and render a ListItem for each one
+12 > .map is used to convert each item in the todo state to a react element
 ```
 
 ---
+
+export default Invert
+
+# Adding new todos
+
+- Without being able to add todos, the app is basically still static...
+- Lets add controls for adding new todos to our state
+- A React "Ref" is used to access the HTML element rendered by react, we use this to read the value a user enters into a text field
+
+---
+export default Invert
+
+```javascript
+import React, { useState, useRef } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+function App() {
+  const textFieldRef = useRef(null);
+  const [todos, setTodos] = useState(['test1', 'test2']);
+
+  // add new todo to state and clear the input
+  function handleAddClick() {
+    const newTodo = textFieldRef.current.value;
+    if(newTodo.length > 0) {
+      setTodos([...todos, newTodo]);
+      textFieldRef.current.value = '';
+    }
+  };
+
+  return (
+    <>
+      <TextField inputRef={textFieldRef} placeholder="new todo" />
+      <Button variant="contained" color="primary" onClick={handleAddClick}>Add</Button>
+      <List>
+        {todos.map((todo, index) => (
+          <ListItem key={index}>
+            <ListItemText primary={todo} />
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
+}
+
+export default App;
+----
+1 > Import useRef from react
+2:3 > Import TextField and Button from material-ui
+9 > create a ref with useRef. We'll use the ref to get the value of the TextField
+12:19 > Create a function to be called when the add button is clicked
+14[4:8] > TextFieldRef.current.value will get the current value of our text field
+15 > We don't actually update the state if there's no text in the text field
+16 > Use "setTodos" to set the todo state. We create a new array that includes the new todo
+17 > Clear the text field of its current value
+23:24 > Finally we add our TextField and Button
+23[3:7] > Setting the inputRef to textFieldRef allows us to access the text field value
+23[8:10] > Placeholder text is displayed when our text field is empty
+24[3:8] > Setting "variant" and "color" make the button appear solid
+24[9:13] > Here we make sure the handleAddClick function is executed when our button is clicked
+```
+
+---
+export default Invert
+
+# Removing todos
+
+- Lets add a trash button for removing todos 
+- Being able to remove todos is useful for marking things completed
+
+---
+export default Invert
+
+```javascript
+import React, { useState, useRef } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+
+function App() {
+  const textFieldRef = useRef(null);
+  const [todos, setTodos] = useState(['test1', 'test2']);
+
+  // add new todo to state and clear the input
+  function handleAddClick() {
+    const newTodo = textFieldRef.current.value;
+    if(newTodo.length > 0) {
+      setTodos([...todos, newTodo]);
+      textFieldRef.current.value = '';
+    }
+  };
+
+  // update state with deleted todo filtered out
+  function handleDeleteClick(index) {
+    setTodos(oldTodos => oldTodos.filter((e, i) => i !== index));
+  }
+
+  return (
+    <>
+      <TextField inputRef={textFieldRef} placeholder="new todo" />
+      <Button variant="contained" color="primary" onClick={handleAddClick}>Add</Button>
+      <List>
+        {todos.map((todo, index) => (
+          <ListItem key={index}>
+            <ListItemText primary={todo} />
+            <ListItemSecondaryAction>
+              <IconButton onClick={() => handleDeleteClick(index)}>
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
+}
+
+export default App;
+----
+4:5 > Import IconButton and DeleteIcon
+9 > Import ListItemSecondaryAction
+24:27 > Create a function to remove todo when delete button is clicked
+37:41 > Add a ListItemSecondaryAction using the IconButton
+```
+
+---
+export default Invert
+
+# Layout
+
+- Let's add a better layout to the app
+- We'll use Material-UIs Grid component to make things look much better
+
+---
+
+export default Invert
+
+```javascript
+import React, { useState, useRef } from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+
+function App() {
+  const textFieldRef = useRef(null);
+  const [todos, setTodos] = useState(['test1', 'test2']);
+
+  // add new todo to state and clear the input
+  function handleAddClick() {
+    const newTodo = textFieldRef.current.value;
+    if(newTodo.length > 0) {
+      setTodos([...todos, newTodo]);
+      textFieldRef.current.value = '';
+    }
+  };
+
+  // update state with deleted todo filtered out
+  function handleDeleteClick(index) {
+    setTodos(oldTodos => oldTodos.filter((e, i) => i !== index));
+  }
+
+  return (
+    <>
+      <Grid container justify="center">
+        <Grid item xs={6} md={2}>
+          <Typography variant="h3" gutterBottom>Todo List</Typography>
+        </Grid>
+      </Grid>
+      <TextField inputRef={textFieldRef} placeholder="new todo" />
+      <Button variant="contained" color="primary" onClick={handleAddClick}>Add</Button>
+      <List>
+        {todos.map((todo, index) => (
+          <ListItem key={index}>
+            <ListItemText primary={todo} />
+            <ListItemSecondaryAction>
+              <IconButton onClick={() => handleDeleteClick(index)}>
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
+}
+
+export default App;
+----
+6:7 > Import Grid and Typography
+33:37 > Add a header
+
+```
