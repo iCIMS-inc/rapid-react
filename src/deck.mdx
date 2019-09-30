@@ -80,47 +80,41 @@ export default Invert
 
 ---
 
-```javascript Sample Code
-import React from 'react';
-
-function SimpleButton(props) {
-  React.createElement('button', {
-    className: 'btn btn-primary',
-    children: 'Hello World'
-  });
+```javascript Using Javascript
+class Hello extends React.Component {
+  render() {
+    return React.createElement(
+      'div',
+      { className: 'wrapper' },
+      `Hello ${this.props.toWho}`
+    );
+  }
 }
 
 ReactDOM.render(
-  SimpleButton,
-  document.getElementById(‘root’)
+  React.createElement(Hello, {toWho: 'World'}, null),
+  document.getElementById('root')
 );
 
 ----
 * > 
-3 > Import the LocaleProvider
-7:10 > Set nameSpaces and CDN
-1,11,13 > Suspense react component displays fallback while loading
-
 ```
 
 ---
 
-```javascript More Code Examples
-import React from 'react';
-import { useTranslation } from 'icims-ui-components';
-
-export function HelloWorldApp() {
-  const { t, i18n } = useTranslation(['myapp']);
-
-  return (
-    <div>
-      {t('myapp:helloWorld')}
-    </div>
-  );
+```javascript With JSX
+class Hello extends React.Component {
+  render() {
+    return <div>Hello {this.props.toWho}</div>;
+  }
 }
+
+ReactDOM.render(
+  <Hello toWho="World" />,
+  document.getElementById('root')
+);
 ----
 * > 
-2 > Import useTranslation hook
-5 > t() is the translate function
-9 > Use t(key, {options}) function for your strings
 ```
+---
+
