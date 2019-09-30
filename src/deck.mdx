@@ -27,9 +27,15 @@ export default Invert
 
 export default Split
 
-<img src="https://render.bitstrips.com/v2/cpanel/abc63329-c482-413d-adb0-1119243878a9-759c69da-b3bd-4af6-bd4b-23eceee9c279-v1.png?transparent=1&palette=1" />
+<div>
+  <h2>Carlos</h2>
+  <img src="https://render.bitstrips.com/v2/cpanel/096dffe0-3934-41db-842c-34c180d0615c-759c69da-b3bd-4af6-bd4b-23eceee9c279-v1.png?transparent=1&palette=1" />
+</div>
 
-<img src="https://render.bitstrips.com/v2/cpanel/abc63329-c482-413d-adb0-1119243878a9-759c69da-b3bd-4af6-bd4b-23eceee9c279-v1.png?transparent=1&palette=1" />
+<div>
+  <h2>Parish</h2>
+  <img src="https://render.bitstrips.com/v2/cpanel/76c3b171-f0cf-4dd6-b91f-91bd86693f61-e1ae95ae-4b2f-4ac6-9d33-5a18e98dac9d-v1.png?transparent=1&palette=1" />
+</div>
 
 ---
 
@@ -37,8 +43,9 @@ export default Split
 
 - What is React
 - Intro to JSX
-- Hands on, create-react-app 
 - Hands on, create a simple component
+- 3rd Party Components
+- Hands on, create-react-app 
 - Hands on, using a 3rd party component (Material UI)
 
 <small>Prerecquisits: Javascript, HTML, CSS &amp; Node.js</small>
@@ -73,20 +80,20 @@ export default Invert
 ## JSX
 
 - Javascript + XML
+- Extension of ES6
 - HTML with some modifications
   - `className` instead of `class`
   - `children` prop
 - Easier to read &amp; write
 
 ---
-
 ```javascript Using Javascript
 class Hello extends React.Component {
   render() {
     return React.createElement(
       'div',
       { className: 'wrapper' },
-      `Hello ${this.props.toWho}`
+      `Hello ${this.props.toWho}!`
     );
   }
 }
@@ -98,14 +105,19 @@ ReactDOM.render(
 
 ----
 * > 
+3 > React.createElement(elements||Component, props, ...children);
+4 > Using a 'div' element
+5 > Props (className is wrapper)
+6 > Children (whats's inside of your HTML tag)
+11:14 > Hello World
+
 ```
 
 ---
-
 ```javascript With JSX
 class Hello extends React.Component {
   render() {
-    return <div>Hello {this.props.toWho}</div>;
+    return <div className="wrapper">Hello {this.props.toWho}!</div>;
   }
 }
 
@@ -114,7 +126,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ----
-* > 
+* >
+3 > Familiar, looks just like HTML
+7:10 > Easier to use and define props, children, etc.
 ```
 ---
-
