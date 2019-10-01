@@ -3,6 +3,8 @@ import { Invert, Split , SplitRight } from 'mdx-deck/layouts'
 import { CodeSurfer, components } from 'mdx-deck-code-surfer'
 import { default as mdxTheme } from 'mdx-deck/themes'
 import nightOwl from 'prism-react-renderer/themes/nightOwl'
+import AnalogClock from 'analog-clock-react'
+
 
 export const theme = {
   ...mdxTheme,
@@ -25,16 +27,20 @@ export default Invert
 
 ---
 
+<img src="https://www.icims.com/img/global/icims-logo-main.png" />
+
+---
+
 export default Split
 
 <div>
-  <h2>Carlos</h2>
-  <img src="https://render.bitstrips.com/v2/cpanel/096dffe0-3934-41db-842c-34c180d0615c-759c69da-b3bd-4af6-bd4b-23eceee9c279-v1.png?transparent=1&palette=1" />
+  <h2>Parish Regn-Stillwaggon</h2>
+  <img src="https://render.bitstrips.com/v2/cpanel/76c3b171-f0cf-4dd6-b91f-91bd86693f61-e1ae95ae-4b2f-4ac6-9d33-5a18e98dac9d-v1.png?transparent=1&palette=1" />
 </div>
 
 <div>
-  <h2>Parish</h2>
-  <img src="https://render.bitstrips.com/v2/cpanel/76c3b171-f0cf-4dd6-b91f-91bd86693f61-e1ae95ae-4b2f-4ac6-9d33-5a18e98dac9d-v1.png?transparent=1&palette=1" />
+  <h2>Carlos Limardo</h2>
+  <img src="https://render.bitstrips.com/v2/cpanel/096dffe0-3934-41db-842c-34c180d0615c-759c69da-b3bd-4af6-bd4b-23eceee9c279-v1.png?transparent=1&palette=1" />
 </div>
 
 ---
@@ -107,13 +113,21 @@ ReactDOM.render(
 3 > Using a 'div' element
 4 > Props (inline style and a className)
 5 > Children (whats's inside of your HTML tag)
+5[3:5] > Using the toWho from prop argument
 9:12 > <div class="wrapper" style="font-size: 20px">Hello World</div>
 ```
 
 ---
 ```javascript With JSX
 function Hello(props) {
-  return <div className="wrapper" style={{fontSize: '20px'}}>Hello {this.props.toWho}!</div>;
+  return (
+    <div
+      className="wrapper"
+      style={{fontSize: '20px'}}
+    >
+      Hello {props.toWho}!
+    </div>
+  );
 }
 
 ReactDOM.render(
@@ -121,10 +135,14 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ----
-1:3 > 
-2 > Familiar, looks just like HTML
-6 > Easier to use and define props, children, etc.
-5:8 > <div class="wrapper" style="font-size: 20px">Hello World</div>
+* > 
+2:9 > Familiar, looks just like HTML
+3 > element
+4:5 > Props
+7 > Child or Children
+7[3:7] > Using the toWho value of the components props
+13 > Easier to use and define props, children, etc.
+12:15 > <div class="wrapper" style="font-size: 20px">Hello World</div>
 ```
 ---
 
@@ -133,6 +151,12 @@ ReactDOM.render(
 <img src="./hour-one/component-search.jpg" style={{width: '80%', height: 'auto'}} />
 
 ---
+export default Split
+
+`<AnalogClock />`
+
+<AnalogClock />
+
 ---
 
 export default Invert
