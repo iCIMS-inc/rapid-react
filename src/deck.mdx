@@ -161,18 +161,36 @@ export default Split
 
 export default Invert
 
-# create-react-app (brought to you by facebook)
+# Let's build a todo list!
 
+---
+
+# Let's build a todo list!
+
+1. Create a react project
+2. Adding a basic list
+3. Add state and controls
+4. Make our todo list responsive
+5. Ways to take your app further
+
+---
+
+# create-react-app
+
+- Written by facebook for learning react
 - Generates a full react project with a single command
-- RAPID development
-  - Babel is configured for you
-  - No need to configure webpack
-  - You get a hot-reloading dev server
-  - serious time saver
+-   Serious time saver
+  - Lots of tooling is configured for you
+  - Hot-reloading dev server
 
-  `npx create-react-app app-name`
+---
+
+  # Generating a project
+
+  `npx create-react-app rapid-react-todo`
 
 - Open in VS Code
+- Open terminal (ctrl + `)
 - Execute the dev server with `npm start`
 
 ---
@@ -181,8 +199,9 @@ export default Invert
 ---
 # The project structure will look like this
 <img src="./hour-two/cra-project-view.png" />
+
+open app.js
 ---
-export default Invert
 
 ```javascript
 import React from 'react';
@@ -212,14 +231,11 @@ function App() {
 
 export default App;
 ----
-* > Open App.js
 * > Lets clean out the app so we can write our todo list code here
 2:3 > Remove lines 2-3
 ```
 
 ---
-
-export default Invert
 
 ```javascript
 import React from 'react';
@@ -252,8 +268,6 @@ export default App;
 ```
 ---
 
-export default Invert
-
 ```javascript
 import React from 'react';
 
@@ -275,40 +289,41 @@ export default App;
 ```
 ---
 
-export default Invert;
+# Component Libraries
 
-# Component Libraries and Material UI
+- Default HTML Elements look bad
+  <img src="./hour-two/ButtonCompare.png" width="400" />
+- Great looking components
+- Features HTML doesn't have
+- Components HTML doesn't have
 
-- Benefits of using a component library
-  - OOTB HTML elements look bad, Components are built to look great 
-  - Component libraries include components that don't exist in HTML
+---
 
-- Check out Material UI (Website Here)
+# Material UI
+
+- Check out [Material UI](https://material-ui.com/)
+- React component library based on [Material Design](https://material.io/design/)
 - Install Material UI Core Components and Icons
   - `npm install @material-ui/core`
   - `npm install @material-ui/icons`
 
 ---
 
-export default Invert;
+# Material Components for Todo List
 
-# Components We'll use...
-
-- List, ListItem, etc (<a href="https://material-ui.com/components/lists/" target="_blank">Docs</a>)
-- Button, IconButton (<a href="https://material-ui.com/components/buttons/" target="_blank">Docs</a>)
-- TextField (<a href="https://material-ui.com/components/text-fields/" target="_blank">Docs</a>)
-- DeleteIcon (<a href="https://material-ui.com/components/icons/" target="_blank">Docs</a>)
-- Grid (<a href="https://material-ui.com/components/grid/" target="_blank">Docs</a>)
+- List, ListItem, etc (<a href="https://material-ui.com/components/lists/" target="_blank">Examples</a> | <a href="https://material-ui.com/components/lists/#api" target="_blank">Docs</a>)
+- Button, IconButton (<a href="https://material-ui.com/components/buttons/" target="_blank">Examples</a> | <a href="https://material-ui.com/components/buttons/#api" target="_blank">Docs</a>)
+- TextField (<a href="https://material-ui.com/components/text-fields/" target="_blank">Examples</a> | <a href="https://material-ui.com/components/text-fields/#api" target="_blank">Docs</a>)
+- DeleteIcon (<a href="https://material-ui.com/components/icons/" target="_blank">Examples</a> | <a href="https://material-ui.com/components/icons/#api" target="_blank">Docs</a>)
+- Grid (<a href="https://material-ui.com/components/grid/" target="_blank">Examples</a> | <a href="https://material-ui.com/components/grid/#api" target="_blank">Docs</a>)
 
 ---
 
-export default Invert
+# Component API
 
-# Let's build the todo list!
+<img src="./hour-two/MaterialAPI.png" />
 
 ---
-
-export default Invert
 
 ```javascript
 import React from 'react';
@@ -332,8 +347,6 @@ export default App;
 ```
 
 ---
-
-export default Invert
 
 ```javascript
 import React from 'react';
@@ -363,16 +376,13 @@ export default App;
 ```
 ---
 
-export default Invert
+# About React Hooks and State
 
-# About React State and Hooks
-
-- State allows your component to "remember" data
-- React Hooks are functions that allow us to hook extra behavior into our components
-  - [More on React hooks](https://reactjs.org/docs/hooks-state.html)
+- React Hooks are functions that hook extra behavior into our components
+- The <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> hook lets our component remember things between renders
+- Let's add state to our todo list
 
 ---
-export default Invert
 
 ```javascript
 import React, { useState } from 'react';
@@ -409,16 +419,13 @@ export default App;
 
 ---
 
-export default Invert
-
 # Adding new todos
 
-- Without being able to add todos, the app is basically still static...
+- Our todos are part of state but our users can't manipulate them
 - Lets add controls for adding new todos to our state
 - A React "Ref" is used to access the HTML element rendered by react, we use this to read the value a user enters into a text field
 
 ---
-export default Invert
 
 ```javascript
 import React, { useState, useRef } from 'react';
@@ -474,7 +481,6 @@ export default App;
 ```
 
 ---
-export default Invert
 
 # Removing todos
 
@@ -482,7 +488,6 @@ export default Invert
 - Being able to remove todos is useful for marking things completed
 
 ---
-export default Invert
 
 ```javascript
 import React, { useState, useRef } from 'react';
@@ -542,7 +547,6 @@ export default App;
 ```
 
 ---
-export default Invert
 
 # Responsive Layout
 
@@ -550,8 +554,6 @@ export default Invert
 - We'll use Material-UIs Grid component to make things look much better
 
 ---
-
-export default Invert
 
 ```javascript
 import React, { useState, useRef } from 'react';
@@ -631,22 +633,18 @@ export default App;
 46:47, 60:61 > Wrap the List with a centered grid, xs={12} and md={6}
 ```
 ---
-
 export default Invert
 
 ## Desktop
 <img src="./hour-two/ResponsiveFull.png" />
 
 ---
-
 export default Invert
 
 ## Phone
 <img src="./hour-two/ResponsiveSmall.png" />
 
 ---
-
-export default Invert
 
 # Take your app further
 
@@ -658,9 +656,10 @@ export default Invert
 - Syncing todos to backend
   - Trigger backend sync after any change to local storage
   - Use mocks to develop without a real backend
+- Write unit tests
+  - Start [here](https://reactjs.org/docs/testing.html)
 
 ---
-export default Invert
 
 # Thank you!
 
