@@ -136,6 +136,12 @@ ReactDOM.render(
 
 # Let's build a todo list!
 
+1. Create a react project
+2. Adding a basic list
+3. Add state and controls
+4. Make our todo list responsive
+5. Ways to take your app further
+
 ---
 
 # create-react-app
@@ -339,11 +345,11 @@ export default App;
 ```
 ---
 
-# About React State and Hooks
+# About React Hooks and State
 
-- State allows your component to "remember" data
-- React Hooks are functions that allow us to hook extra behavior into our components
-  - [More on React hooks](https://reactjs.org/docs/hooks-state.html)
+- React Hooks are functions that hook extra behavior into our components
+- The <a href="https://reactjs.org/docs/hooks-state.html" target="_blank">useState</a> hook lets our component remember things between renders
+- Let's add state to our todo list
 
 ---
 
@@ -384,7 +390,7 @@ export default App;
 
 # Adding new todos
 
-- Without being able to add todos, the app is basically still static...
+- Our todos are part of state but our users can't manipulate them
 - Lets add controls for adding new todos to our state
 - A React "Ref" is used to access the HTML element rendered by react, we use this to read the value a user enters into a text field
 
