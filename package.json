@@ -5,7 +5,7 @@
   "scripts": {
     "start": "mdx-deck src/deck.mdx",
     "build": "mdx-deck build src/deck.mdx --no-html --out-dir public",
-    "prebuild": "mkdir -p ./public/hour-one && mkdir -p ./public/hour-two && cp -r ./src/hour-one ./public/hour-one && cp -r ./src/hour-two ./public/hour-two",
+    "prebuild": "mkdir -p ./public/hour-one && mkdir -p ./public/hour-two && cp -r ./src/hour-one/* ./public/hour-one/. && cp -r ./src/hour-two/* ./public/hour-two/.",
     "pdf": "mdx-deck pdf src/deck.mdx --out-dir public",
     "image": "mdx-deck screenshot src/deck.mdx --out-dir public",
     "help": "mdx-deck",
@@ -18,12 +18,16 @@
   "devDependencies": {
     "css-loader": "^1.0.1",
     "firebase-tools": "^6.4.0",
-    "mdx-deck": "^1.10.0",
+    "mdx-deck": "^1.0.9",
     "mdx-deck-code-surfer": "^0.5.5",
     "mdx-deck-live-code": "^1.0.1",
     "prism-react-renderer": "^0.1.5",
     "raw-loader": "^0.5.1"
   },
   "name": "icims-i18n-presentation",
-  "dependencies": {}
+  "dependencies": {
+    "analog-clock-react": "^1.1.0",
+    "react-clock": "^2.4.0",
+    "styled-components": "^4.4.0"
+  }
 }
