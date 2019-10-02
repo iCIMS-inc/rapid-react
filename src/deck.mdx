@@ -51,19 +51,27 @@ export default Split
 - Intro to JSX
 - Hands on, create a simple component
 - 3rd Party Components
-- Hands on, create-react-app 
-- Hands on, using a 3rd party component (Material UI)
+- Intro to create-react-app 
+- Hands on, create a Todo App
+- Hands on, test Todo App
 
-<small>Prerecquisits: Javascript, HTML, CSS &amp; Node.js</small>
+
 ---
 
+## Prerecquisits
+
+- Knowledge of Javascript, HTML &amp; CSS
+- Node.js 17 @ [nodejs.org](https://nodejs.org/en/)
+- Pref: Visual Studio Code @ [code.visualstudio.com](https://code.visualstudio.com/download)
+
+---
 ## Objectives and Expectations
 
-- Upon completing this workshop, you will:
-  - Have an understanding of React
-  - How to create simple React components
-  - How to use 3rd party React components
-  - Build a simple ToDo app using `create-react-app`
+Upon completing this workshop, you will:
+- Have an understanding of React
+- How to create simple React components
+- How to use 3rd party React components
+- Build a simple ToDo app using `create-react-app`
 
 ---
 
@@ -75,18 +83,26 @@ export default Invert
 
 ## What is React?
 
-- A Javascript library for building user interfaces
+- A Javascript library for building user interfaces created by Facebook
 - The V in M**V**C
-- VirtualDOM
 - Component based (components on components on components!)
 - Key terms: Components, Props, State
+
+---
+
+## Virtual DOM
+
+- 🐢DOM is slow (re-rendering slows you down)
+- ⚡️Virtual DOM does no rendering
+- React ONLY updates objects that have changed in the real DOM
+- DOM updates are batched
 
 ---
 
 ## JSX
 
 - Javascript + XML
-- Extension of ES6
+- Syntax extension to JavaScript
 - HTML with some modifications
   - `className` instead of `class`
   - `children` prop
@@ -153,9 +169,23 @@ ReactDOM.render(
 ---
 export default Split
 
+<AnalogClock />
+
+`import AnalogClock from 'analog-clock';`
+
 `<AnalogClock />`
 
-<AnalogClock />
+---
+
+## Component Props
+
+<img src="./hour-one/clock-props.png" style={{width: 'auto', height: '70vh'}} />
+
+---
+
+## Analog Clock
+
+<AnalogClock baseColor="#00ff00" handColors={{second: '#ff0000' }} />
 
 ---
 
@@ -717,16 +747,18 @@ export default Invert
 
 ```javascript
 import React, { useState, useRef } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import {
+  Button,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  TextField,
+  Typography
+} from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 
 function App() {
   const textFieldRef = useRef(null);
@@ -782,17 +814,19 @@ function App() {
 }
 ----
 * > 
-2,3,6 > Components we need for our new Form component
-38:45 > What we need for our Form component
+3,4,10 > Components we need for our new Form component
+40:47 > What we need for our Form component
 ```
 
 ---
 
 ```javascript lib/Form.jsx
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
+import {
+  Button,
+  TextField,
+  Grid
+} from '@material-ui/core';
 
 export default function Form(props) {
   <Grid container justify="center" spacing={3}>
@@ -806,24 +840,26 @@ export default function Form(props) {
 }
 ----
 * > 
-1:4 > Notice we did not import useRef or useState hooks
-6:15 > Form component
-9[3:9],12[9:15] > Convert functions to props
+1:6 > Notice we did not import useRef or useState hooks
+9:16 > Form component
+11[3:9],14[9:15] > Convert functions to props
 ```
 ---
 
 ```javascript
 import React, { useState, useRef } from 'react';
-// import TextField from '@material-ui/core/TextField';
-// import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import {
+  // Button,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  // TextField,
+  Typography
+} from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 
 import Form from './lib/Form';
 
@@ -874,24 +910,26 @@ function App() {
 }
 ----
 * > 
-1:11 > Remove the Text and Button
-13 > Import the new Form component
-40 > Use our Form component
-20:31 > Functionality still lives as far as possible outside
-40[6,11] > Passed as Props
+3,10 > Remove the Text and Button imports
+15 > Import the new Form component
+42 > Use our Form component
+18:33 > Functionality still lives as far as possible outside
+42[6,11] > Passed as Props
 ```
 ---
 
 ```javascript
 import React, { useState, useRef } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import {
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  Typography
+} from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 
 import Form from './lib/Form';
 
@@ -942,17 +980,19 @@ function App() {
 }
 ----
 * > 
-2,3,7:9 > Components we will need for our TodoItem component
-43:50 > Import the new Form component
+4,6:8,11 > Components we will need for our TodoItem component
+45:52 > TodoItem
 ```
 ---
 ```javascript lib/TodoItem.jsx
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import {
+  IconButton,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction
+} from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 
 export default function TodoItem(props) {
   return (
@@ -968,15 +1008,17 @@ export default function TodoItem(props) {
 }
 ----
 * > 
-10:17 > Notice: Key prop is not needed here
-11[5:10],13[5:11] > Props
+12:19 > Notice: Key prop is not needed here
+13[5:10],15[5:11] > Props
 ```
 ---
 
 ```javascript
 import React, { useState, useRef } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import {
+  Grid,
+  Typography
+ } from '@material-ui/core';
 
 import Form from './lib/Form';
 import TodoItem from './lib/TodoItem';
@@ -1025,14 +1067,14 @@ function App() {
 }
 ----
 * > 
-1:3 > Notice how much shorter our imports are
-6 > Import the new TodoItem component
-38:42 > Use our TodoItem component
-39 > Still need to set a key
-40 > Our todo item text
-41 > Keep onDelete functionality outside
+1:8 > Notice how much shorter our imports are
+8 > Import the new TodoItem component
+40:44 > Use our TodoItem component
+41 > Still need to set a key
+42 > Our todo item text
+43 > Keep onDelete functionality outside
 * > Shorter, more readable application code
-33, 38:42 > Custom components
+35, 40:44 > Custom components
 ```
 ---
 
