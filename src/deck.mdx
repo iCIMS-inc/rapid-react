@@ -359,10 +359,10 @@ function App() {
     <>
       <List>
         <ListItem>
-          <ListItemText primary="Todo1" />
+          <ListItemText>Todo1</ListItemText>
         </ListItem>
         <ListItem>
-          <ListItemText primary="Todo2" />
+          <ListItemText>Todo2</ListItemText>
         </ListItem>
       </List>
     </>
@@ -398,11 +398,11 @@ function App() {
       <List>
         {todos.map((todo, index) => (
           <ListItem key={index}>
-            <ListItemText primary={todo} />
+            <ListItemText>{todo}</ListItemText>
           </ListItem>
         ))}
       </List>
-    </>
+    </ListItemText>
   );
 }
 
@@ -455,7 +455,7 @@ function App() {
       <List>
         {todos.map((todo, index) => (
           <ListItem key={index}>
-            <ListItemText primary={todo} />
+            <ListItemText>{todo}</ListItemText>
           </ListItem>
         ))}
       </List>
@@ -525,7 +525,7 @@ function App() {
       <List>
         {todos.map((todo, index) => (
           <ListItem key={index}>
-            <ListItemText primary={todo} />
+            <ListItemText>{todo}</ListItemText>
             <ListItemSecondaryAction>
               <IconButton onClick={() => handleDeleteClick(index)}>
                 <DeleteIcon />
@@ -606,7 +606,7 @@ function App() {
           <List>
             {todos.map((todo, index) => (
               <ListItem key={index}>
-                <ListItemText primary={todo} />
+                <ListItemText>{todo}</ListItemText>
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => handleDeleteClick(index)}>
                     <DeleteIcon />
