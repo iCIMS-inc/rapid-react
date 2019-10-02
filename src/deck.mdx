@@ -288,6 +288,21 @@ export default App;
 6 > We'll render this just to know our app is working
 ```
 ---
+export default Invert
+
+# Your app will look like this
+
+<img  src="./hour-two/EmptyTest.png" />
+
+---
+
+# How your app looks in HTML
+
+<img src="./hour-two/EmptyTestHtml.png" width="600" />
+
+All of your app renders into the "root" element
+
+---
 
 # Component Libraries
 
@@ -319,7 +334,16 @@ export default App;
 
 ---
 
-# Component API
+# Component Example Pages
+
+- Lots of examples of components
+- Live editing of all examples
+
+<img src="./hour-two/MaterialExamples.png" />
+
+---
+
+# Component API Pages
 
 <img src="./hour-two/MaterialAPI.png" />
 
@@ -327,9 +351,7 @@ export default App;
 
 ```javascript
 import React from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 
 function App() {
   return (
@@ -342,27 +364,25 @@ function App() {
 export default App;
 ----
 * > Let's start by adding some todos to our page
-2:4 > Import List, ListItem, and ListItemText from material-ui
-9 > Replace our placeholder test code with a List of todos
+2 > Import List, ListItem, and ListItemText from material-ui
+7 > Replace our placeholder test code with a List of todos
 ```
 
 ---
 
 ```javascript
 import React from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 
 function App() {
   return (
     <>
       <List>
         <ListItem>
-          <ListItemText primary="Todo1" />
+          <ListItemText>Todo1</ListItemText>
         </ListItem>
         <ListItem>
-          <ListItemText primary="Todo2" />
+          <ListItemText>Todo2</ListItemText>
         </ListItem>
       </List>
     </>
@@ -371,9 +391,16 @@ function App() {
 
 export default App;
 ----
-9:16 > We've added a static list with 2 todo items
-9:16 > This is good but we need a way to render todos from data...
+7:14 > We've added a static list with 2 todo items
+7:14 > This is good but we need a way to render todos from data...
 ```
+---
+export default Invert
+
+# Your app with list items
+
+<img src="./hour-two/ListItems.png" width="1000" />
+
 ---
 
 # About React Hooks and State
@@ -386,9 +413,7 @@ export default App;
 
 ```javascript
 import React, { useState } from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 
 function App() {
   const [todos, setTodos] = useState(['test1', 'test2']);
@@ -398,23 +423,23 @@ function App() {
       <List>
         {todos.map((todo, index) => (
           <ListItem key={index}>
-            <ListItemText primary={todo} />
+            <ListItemText>{todo}</ListItemText>
           </ListItem>
         ))}
       </List>
-    </>
+    </ListItemText>
   );
 }
 
 export default App;
 ----
 1 > We need to import "useState" from react like this
-7 > This line adds state to our component
-7[4] > "todos" is our state, an array of todo items, stored as strings
-7[6] > "setTodos" is a function to set the state to a new value
+5 > This line adds state to our component
+5[4] > "todos" is our state, an array of todo items, stored as strings
+5[6] > "setTodos" is a function to set the state to a new value
 7[13:18] > "['test1', 'test2']" is the initial value of the todos state
-12:16 > We'll loop through all the todos in our state and render a ListItem for each one
-12 > .map is used to convert each item in the todo state to a react element
+10:14 > We'll loop through all the todos in our state and render a ListItem for each one
+10 > .map is used to convert each item in the todo state to a react element
 ```
 
 ---
@@ -429,11 +454,13 @@ export default App;
 
 ```javascript
 import React, { useState, useRef } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import {
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  TextField
+} from '@material-ui/core';
 
 function App() {
   const textFieldRef = useRef(null);
@@ -455,7 +482,7 @@ function App() {
       <List>
         {todos.map((todo, index) => (
           <ListItem key={index}>
-            <ListItemText primary={todo} />
+            <ListItemText>{todo}</ListItemText>
           </ListItem>
         ))}
       </List>
@@ -466,22 +493,28 @@ function App() {
 export default App;
 ----
 1 > Import useRef from react
-2:3 > Import TextField and Button from material-ui
-9 > create a ref with useRef. We'll use the ref to get the value of the TextField
-12:19 > Create a function to be called when the add button is clicked
-14[4:8] > TextFieldRef.current.value will get the current value of our text field
-15 > We don't actually update the state if there's no text in the text field
-16 > Use "setTodos" to set the todo state. We create a new array that includes the new todo
-17 > Clear the text field of its current value
-23:24 > Finally we add our TextField and Button
-23[3:7] > Setting the inputRef to textFieldRef allows us to access the text field value
-23[8:10] > Placeholder text is displayed when our text field is empty
-24[3:8] > Setting "variant" and "color" make the button appear solid
-24[9:13] > Here we make sure the handleAddClick function is executed when our button is clicked
+3,7 > Import TextField and Button from material-ui
+11 > create a ref with useRef. We'll use the ref to get the value of the TextField
+14:21 > Create a function to be called when the add button is clicked
+16[4:8] > TextFieldRef.current.value will get the current value of our text field
+17 > We don't actually update the state if there's no text in the text field
+18 > Use "setTodos" to set the todo state. We create a new array that includes the new todo
+19 > Clear the text field of its current value
+25:26 > Finally we add our TextField and Button
+25[3:7] > Setting the inputRef to textFieldRef allows us to access the text field value
+25[8:10] > Placeholder text is displayed when our text field is empty
+26[3:8] > Setting "variant" and "color" make the button appear solid
+26[9:13] > Here we make sure the handleAddClick function is executed when our button is clicked
 ```
 
 ---
+export default Invert
 
+# Your app with add controls
+
+<img src="./hour-two/ListControls1.png" width="500" />
+
+---
 # Removing todos
 
 - Lets add a trash button for removing todos 
@@ -491,14 +524,16 @@ export default App;
 
 ```javascript
 import React, { useState, useRef } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import {
+  Button,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  TextField
+} from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 
 function App() {
   const textFieldRef = useRef(null);
@@ -525,7 +560,7 @@ function App() {
       <List>
         {todos.map((todo, index) => (
           <ListItem key={index}>
-            <ListItemText primary={todo} />
+            <ListItemText>{todo}</ListItemText>
             <ListItemSecondaryAction>
               <IconButton onClick={() => handleDeleteClick(index)}>
                 <DeleteIcon />
@@ -540,12 +575,19 @@ function App() {
 
 export default App;
 ----
-4:5 > Import IconButton and DeleteIcon
-9 > Import ListItemSecondaryAction
-24:27 > Create a function to remove todo when delete button is clicked
-37:41 > Add a ListItemSecondaryAction using the IconButton
+4,8 > Import IconButton and ListItemSecondaryAction
+11 > Import Delete from material UI icons. Using "as" we can rename this to DeleteIcon
+26:29 > Create a function to remove todo when delete button is clicked
+39:43 > Add a ListItemSecondaryAction using the IconButton
 ```
 
+---
+
+export default Invert
+
+# Your app with remove controls
+
+<img src="./hour-two/ListControls2.png" width="1400" />
 ---
 
 # Responsive Layout
@@ -557,16 +599,18 @@ export default App;
 
 ```javascript
 import React, { useState, useRef } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import {
+  Button,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  TextField,
+  Typography
+} from '@material-ui/core';
+import { Delete as DeleteIcon } from '@material-ui/icons';
 
 function App() {
   const textFieldRef = useRef(null);
@@ -606,7 +650,7 @@ function App() {
           <List>
             {todos.map((todo, index) => (
               <ListItem key={index}>
-                <ListItemText primary={todo} />
+                <ListItemText>{todo}</ListItemText>
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => handleDeleteClick(index)}>
                     <DeleteIcon />
@@ -623,14 +667,14 @@ function App() {
 
 export default App;
 ----
-6:7 > Import Grid and Typography
-33:37 > Add a cenetered header
-33 > Use a container grid to center all content in a grid
-34 > Use an item grid for all grid content
-34 > Set sizes at different breakpoints using xs and md
-35 > Typography will create text elements in material ui style
-38:39, 41:42, 44:45 > We want the textfield and button side by side so we'll put them in the same container grid
-46:47, 60:61 > Wrap the List with a centered grid, xs={12} and md={6}
+4,11 > Import Grid and Typography
+35:39 > Add a cenetered header
+35 > Use a container grid to center all content in a grid
+36 > Use an item grid for all grid content
+36 > Set sizes at different breakpoints using xs and md
+37 > Typography will create text elements in material ui style
+40:41, 43:44, 46:47 > We want the textfield and button side by side so we'll put them in the same container grid
+48:49, 62:63 > Wrap the List with a centered grid, xs={12} and md={6}
 ```
 ---
 export default Invert
