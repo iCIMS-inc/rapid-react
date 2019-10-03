@@ -64,6 +64,10 @@ export default Split
 - Node.js 17 @ [nodejs.org](https://nodejs.org/en/)
 - Pref: Visual Studio Code @ [code.visualstudio.com](https://code.visualstudio.com/download)
 
+## Follow Along
+- https://github.com/Disco-Pope/rapid-react-todo
+- https://rapid-react-app.firebaseapp.com/#0
+
 ---
 ## Objectives and Expectations
 
@@ -797,7 +801,7 @@ function App() {
 ----
 * > 
 3,4,10 > Components we need for our new Form component
-40:47 > What we need for our Form component
+40:47 > Code we need for our Form component
 ```
 
 ---
@@ -811,20 +815,22 @@ import {
 } from '@material-ui/core';
 
 export default function Form(props) {
-  <Grid container justify="center" spacing={3}>
-    <Grid item xs={9} md={5}>
-      <TextField inputRef={props.inputRef} placeholder="new todo" fullWidth />
+  return (
+    <Grid container justify="center" spacing={3}>
+      <Grid item xs={9} md={5}>
+        <TextField inputRef={props.inputRef} placeholder="new todo" fullWidth />
+      </Grid>
+      <Grid item xs={2} md={1}>
+        <Button variant="contained" color="primary" onClick={props.onAddClick}>Add</Button>
+      </Grid>
     </Grid>
-    <Grid item xs={2} md={1}>
-      <Button variant="contained" color="primary" onClick={props.onAddClick}>Add</Button>
-    </Grid>
-  </Grid>
+  )
 }
 ----
 * > 
 1:6 > Notice we did not import useRef or useState hooks
-9:16 > Form component
-11[3:9],14[9:15] > Convert functions to props
+10:17 > Form component
+12[3:9],15[9:15] > Convert functions to props
 ```
 ---
 
@@ -892,7 +898,7 @@ function App() {
 }
 ----
 * > 
-3,10 > Remove the Text and Button imports
+3,10 > Remove the InputText and Button imports
 15 > Import the new Form component
 42 > Use our Form component
 18:33 > Functionality still lives as far as possible outside
@@ -963,7 +969,7 @@ function App() {
 ----
 * > 
 4,6:8,11 > Components we will need for our TodoItem component
-45:52 > TodoItem
+45:52 > Single TodoItem
 ```
 ---
 ```javascript lib/TodoItem.js
@@ -1052,11 +1058,11 @@ function App() {
 1:8 > Notice how much shorter our imports are
 8 > Import the new TodoItem component
 40:44 > Use our TodoItem component
-41 > Still need to set a key
-42 > Our todo item text
-43 > Keep onDelete functionality outside
+41 > Key is still required
+42 > Set TodoItem text
+43 > Again pass in onDelete, but handle it from outside
 * > Shorter, more readable application code
-35, 40:44 > Custom components
+35, 40:44 > A look at the components we created
 ```
 ---
 
