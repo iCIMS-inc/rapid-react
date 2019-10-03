@@ -233,7 +233,7 @@ export default Invert
 open app.js
 ---
 
-```javascript
+```javascript src/App.js
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -349,8 +349,7 @@ All of your app renders into the "root" element
 - Check out [Material UI](https://material-ui.com/)
 - React component library based on [Material Design](https://material.io/design/)
 - Install Material UI Core Components and Icons
-  - `npm install @material-ui/core`
-  - `npm install @material-ui/icons`
+  - `npm install --save @material-ui/core @material-ui/icons`
 
 ---
 
@@ -720,23 +719,6 @@ export default Invert
 
 ---
 
-# Take your app further
-
-- Refactoring
-  - Make TodoItem its own component
-- Ability to edit todos
-- Saving todos to a local storage
-  - save on add, remove, edit
-- Syncing todos to backend
-  - Trigger backend sync after any change to local storage
-  - Use mocks to develop without a real backend
-- Write unit tests
-  - Start [here](https://reactjs.org/docs/testing.html)
-
----
-
----
-
 export default Invert
 
 ## Break it down
@@ -820,7 +802,7 @@ function App() {
 
 ---
 
-```javascript lib/Form.jsx
+```javascript lib/Form.js
 import React from 'react';
 import {
   Button,
@@ -984,7 +966,7 @@ function App() {
 45:52 > TodoItem
 ```
 ---
-```javascript lib/TodoItem.jsx
+```javascript lib/TodoItem.js
 import React from 'react';
 import {
   IconButton,
@@ -1076,6 +1058,113 @@ function App() {
 * > Shorter, more readable application code
 35, 40:44 > Custom components
 ```
+---
+
+# Automated Testing
+
+- create-react-app comes with jest testing built in
+- jest will treat files with .test.js extension as test files
+- create-react-app includes a very simple test for App.js 
+- run jest using `npm test`
+  - automatically starts in watch mode
+
+---
+
+# Jest Watch mode
+
+<img src="./hour-two/jestWatch.png" />
+
+---
+
+# Benefits of Automated Tests
+
+- As your app gets bigger it becomes harder to ensure nothing breaks as you make changes
+- If your tests are all written in code you can run all of them in moments and have confidence that your changes didn't have unforeseen consequences
+
+---
+
+```javascript App.test.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<App />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+----
+* > Quick anatomy of tests
+5 > Each individual test is created with the "it" function
+5[3] > The first argument is the name of the test
+5[3] > Use something that describes expected behavior
+5[6:12], 6:9 > The second argument is a function to run the test code
+5[6:12], 6:9 > This test just makes sure the app doesn't crash when it renders
+```
+---
+# Enzyme
+
+- A react testing library by Airbnb
+- Enzyme can "shallow render" components
+  - Renders your component without rendering all its chilren
+  - Very fast and is sufficient for many tests
+---
+
+# Let's write a test for Form.js
+
+- We'll need to install enzyme
+  - `npm install --save-dev enzyme enzyme-adapter-react-16`
+
+---
+```javascript lib/Form.test.js
+import React from 'react';
+import { Button } from '@material-ui/core';
+import Form from './Form';
+
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+configure({ adapter: new Adapter() });
+
+it('should invoke onAddClick when add button is clicked', () => {
+	const mockAddFn = jest.fn();
+	const wrapper = shallow(<Form onAddClick={mockAddFn} />);
+
+	wrapper.find(Button).simulate('click');
+	expect(mockAddFn).toHaveBeenCalled();
+});
+----
+1,2 > Import react and the Button component from material ui
+3 > We also need the Form component that we're testing
+5:8 > Here we import and configure enzyme. Tests won't work if the adapter isn't configured
+9:15 > Here is our test code
+9 > We're going to make sure that clicking the add button calls our addHandler
+10 > jest.fn() creates a mocked function. We can test whether it is invoked later
+11 > Here we shallow render the Form component
+13 > From the wrapper we can simulate a click on the button inside Form
+14 > Finally we can tell our test we expect the mock function to have been invoked
+```
+---
+
+<img src="./hour-two/jestFormTest.png" />
+---
+
+# Ideas for taking your app further
+
+- Ability to edit todos
+  - Store additional state for edit mode
+  - Use text field instead of ListItemText
+- Saving todos to a local storage
+  - save on add, remove, edit
+- Syncing todos to backend
+  - Trigger backend sync after any change to local storage
+  - Use mocks to develop without a real backend 
+    - [axios](https://www.npmjs.com/package/axios), [axios-mock-adapter](https://www.npmjs.com/package/axios-mock-adapter)
+- Create a backend with expressjs
+
+---
+
+# Q & A
+
 ---
 
 # Thank you!
